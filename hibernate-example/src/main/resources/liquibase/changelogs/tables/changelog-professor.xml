@@ -1,0 +1,29 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet id="1" author="Denys">
+        <createTable tableName="professor">
+            <column name="professor_id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="professor_id"/>
+            </column>
+            <column name="person_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="person_id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Denys" >
+        <loadData tableName="professor" file="liquibase/setup-data/professor/init.csv">
+            <column name="professor_id" type="NUMERIC"/>
+            <column name="person_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

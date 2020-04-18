@@ -1,0 +1,34 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet id="1" author="Denys">
+        <createTable tableName="exams_result">
+            <column name="lesson_id" type="BIGINT">
+                <constraints primaryKey="true" foreignKeyName="lesson_id"/>
+            </column>
+            <column name="student_id" type="BIGINT">
+                <constraints primaryKey="true" foreignKeyName="student_id"/>
+            </column>
+            <column name="professor_id" type="BIGINT">
+                <constraints primaryKey="true" foreignKeyName="professor_id"/>
+            </column>
+            <column name="result" type="INT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Denys" >
+        <loadData tableName="exams_result" file="liquibase/setup-data/exams_result/init.csv">
+            <column name="lesson_id" type="NUMERIC"/>
+            <column name="student_id" type="NUMERIC"/>
+            <column name="professor_id" type="NUMERIC"/>
+            <column name="result" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

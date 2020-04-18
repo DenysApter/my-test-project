@@ -1,0 +1,37 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet id="1" author="Denys">
+        <createTable tableName="group_of_lesson">
+            <column name="group_of_lesson_id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="group_of_lesson_id"/>
+            </column>
+            <column name="group_name" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lesson_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="lesson_id"/>
+            </column>
+            <column name="university_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="university_id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Denys" id="2">
+        <loadData tableName="group_of_lesson" file="liquibase/setup-data/group_of_lesson/init.csv">
+            <column name="group_of_lesson_id" type="NUMERIC"/>
+            <column name="group_name" type="STRING"/>
+            <column name="lesson_id" type="NUMERIC"/>
+            <column name="university_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,104 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Denys (generated)" id="1586027983032-1">
+        <createTable tableName="exams_result">
+            <column name="lesson_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="exams_resultPK"/>
+            </column>
+            <column name="professor_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="exams_resultPK"/>
+            </column>
+            <column name="student_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="exams_resultPK"/>
+            </column>
+            <column name="result" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-2">
+        <createTable tableName="group_of_lesson">
+            <column autoIncrement="true" name="group_of_lesson_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="group_of_lessonPK"/>
+            </column>
+            <column name="group_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lesson_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="university_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-3">
+        <createTable tableName="group_of_lesson_professor">
+            <column name="professor_id" type="BIGINT"/>
+            <column name="group_of_lesson_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="group_of_lesson_professorPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-4">
+        <createTable tableName="lesson">
+            <column autoIncrement="true" name="lesson_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="lessonPK"/>
+            </column>
+            <column name="lesson_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-5">
+        <createTable tableName="person">
+            <column autoIncrement="true" name="person_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="personPK"/>
+            </column>
+            <column name="person_age" type="INT"/>
+            <column name="person_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-6">
+        <createTable tableName="professor">
+            <column autoIncrement="true" name="professor_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="professorPK"/>
+            </column>
+            <column name="person_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-7">
+        <createTable tableName="student">
+            <column autoIncrement="true" name="student_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="studentPK"/>
+            </column>
+            <column name="person_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-8">
+        <createTable tableName="university">
+            <column autoIncrement="true" name="university_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="universityPK"/>
+            </column>
+            <column name="university_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-9">
+        <addForeignKeyConstraint baseColumnNames="university_id" baseTableName="group_of_lesson" constraintName="FKc200u2ca55ew0ybxv0c47sksi" deferrable="false" initiallyDeferred="false" referencedColumnNames="university_id" referencedTableName="university" validate="true"/>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-10">
+        <addForeignKeyConstraint baseColumnNames="lesson_id" baseTableName="group_of_lesson" constraintName="FKffkmhnf79i03hivw1spfskhyt" deferrable="false" initiallyDeferred="false" referencedColumnNames="lesson_id" referencedTableName="lesson" validate="true"/>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-11">
+        <addForeignKeyConstraint baseColumnNames="person_id" baseTableName="professor" constraintName="FKh2gyh31ixmqk2wicvlpbj5xy7" deferrable="false" initiallyDeferred="false" referencedColumnNames="person_id" referencedTableName="person" validate="true"/>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-12">
+        <addForeignKeyConstraint baseColumnNames="group_of_lesson_id" baseTableName="group_of_lesson_professor" constraintName="FKmgt3xkb3x12h4ee5po6aqogoi" deferrable="false" initiallyDeferred="false" referencedColumnNames="group_of_lesson_id" referencedTableName="group_of_lesson" validate="true"/>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-13">
+        <addForeignKeyConstraint baseColumnNames="person_id" baseTableName="student" constraintName="FKnwsufvlvlnsxqv60ltj06bbfx" deferrable="false" initiallyDeferred="false" referencedColumnNames="person_id" referencedTableName="person" validate="true"/>
+    </changeSet>
+    <changeSet author="Denys (generated)" id="1586027983032-14">
+        <addForeignKeyConstraint baseColumnNames="professor_id" baseTableName="group_of_lesson_professor" constraintName="FKokn820lqdidhdhnjyyo8q9td0" deferrable="false" initiallyDeferred="false" referencedColumnNames="professor_id" referencedTableName="professor" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

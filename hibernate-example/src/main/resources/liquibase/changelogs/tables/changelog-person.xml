@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet id="1" author="Denys">
+        <createTable tableName="person">
+            <column name="person_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="person_id" nullable="false"/>
+            </column>
+            <column name="person_name" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="person_second_name" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="person_age" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Denys" id="2">
+        <loadData tableName="person" file="liquibase/setup-data/person/init.csv">
+            <column name="person_id" type="NUMERIC"/>
+            <column name="person_name" type="STRING"/>
+            <column name="person_second_name" type="STRING"/>
+            <column name="person_age" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
