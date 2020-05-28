@@ -1,8 +1,11 @@
 package com.denys.hibernateexample.db.entity.common;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@EqualsAndHashCode
 @Embeddable
 public class CompositeId implements Serializable {
 

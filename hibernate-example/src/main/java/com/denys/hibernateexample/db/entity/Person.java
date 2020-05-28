@@ -10,17 +10,18 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity(name = "person")
+@AllArgsConstructor
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id", nullable = false)
     private long id;
 
-    @NonNull
-    @Column(name = "person_name")
-    private String name;
 
-    @NonNull
-    @Column(name = "person_age")
-    private int age;
+    @Column(name = "person_name")
+    @NonNull private String name;
+
+
+     @Column(name = "person_age")
+     private Integer age;
 }

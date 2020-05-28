@@ -1,0 +1,1 @@
+org.springframework.boot.env.EnvironmentPostProcessor = com.denys.hibernateexample.db.environment.post.processor.DockerPostgresSetupEnvironmentPostProcessor
