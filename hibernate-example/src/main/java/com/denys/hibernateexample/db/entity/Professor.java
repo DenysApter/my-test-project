@@ -18,7 +18,7 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "professor_id", nullable = false)
     @Setter(AccessLevel.NONE)
-    @NonNull private Long id;
+    private Long id;
 
     @Version
     @Transient

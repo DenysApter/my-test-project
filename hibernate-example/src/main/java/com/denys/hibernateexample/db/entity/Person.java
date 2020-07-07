@@ -23,5 +23,5 @@ public class Person {
 
 
      @Column(name = "person_age")
-     private Integer age;
+     @NonNull private Integer age;
 }

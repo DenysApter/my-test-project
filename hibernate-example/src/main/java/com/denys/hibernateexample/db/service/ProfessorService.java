@@ -55,7 +55,7 @@ public class ProfessorService {
     @Transactional  // Professor(id=4, version=0, person=Person(id=20, name=Zahar, age=26))
     public List<Professor> testFindByExample() {
         ExampleMatcher exampleMatcher = ExampleMatcher.matching().withIgnoreCase();
-        Example<Professor> example = Example.of(new Professor(4L, new Person(20, "zahar", null)), exampleMatcher);
+        Example<Professor> example = Example.of(new Professor( new Person(20, "zahar", null)), exampleMatcher);
         Optional<Professor> res = professorRepo.findOne(example);
         return res.map(List::of).orElseThrow(IllegalArgumentException::new);
     }

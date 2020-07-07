@@ -17,7 +17,8 @@ public class DockerPostgresSetupEnvironmentPostProcessor implements EnvironmentP
     @SneakyThrows
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        String activeProfile = environment.getActiveProfiles()[0];
+        String activeProfile = environment.getActiveProfiles().length != 0
+                ? environment.getActiveProfiles()[0] : "";
         String homeDirectory = System.getProperty("user.home");
         String[] unixCmdline = {"sh", "-c", "docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres", homeDirectory};
         String[] windowsCmdline = {"cmd.exe", "/c", "docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres", homeDirectory};
